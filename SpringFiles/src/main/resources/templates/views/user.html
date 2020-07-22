@@ -12,7 +12,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>File Upload</h2>
+			<h2 class="bg-info text-white">File Upload</h2>
+				
 				<div class="alert alert-success alert-dismissible" role="alert"
 					th:if="${successmessage}">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -23,7 +24,7 @@
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<strong th:text="${errormessage}"></strong>
 				</div>
-				<form action="" th:action="@{'/fileupload'}" th:object="${user}"
+				<!-- <form  th:action="@{'/fileupload'}" th:object="${user}"
 					method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="fileupload">File Upload(Excel or CSV or JSON)</label>
@@ -31,18 +32,27 @@
 							th:field="*{file}">
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
+				</form> -->
+				
+				<form th:action="@{/import}" method="post" enctype="multipart/form-data">
+				<label for="fileupload" >File Upload(Excel or CSV or JSON)</label>
+					<div class="form-group">
+					 <input type="file" th:name="file">
+					  <input th:type="submit" value="Import" class="btn btn-primary"/>
+					</div>
 				</form>
+					
 			</div>
 			<div class="col-md-12">
-				<h2>All User</h2>
+				<h2 class="bg-info text-white">All User</h2>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Email</th>
-							<th>Phone Number</th>
-							<th>File Type</th>
+							<th  class="bg-secondary text-white">First Name</th>
+							<th  class="bg-secondary text-white">Last Name</th>
+							<th  class="bg-secondary text-white">Email</th>
+							<th  class="bg-secondary text-white">Phone Number</th>
+							<th  class="bg-secondary text-white">File Type</th>
 						</tr>
 					</thead>
 					<tbody>

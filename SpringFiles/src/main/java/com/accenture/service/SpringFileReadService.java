@@ -12,4 +12,7 @@ public interface SpringFileReadService {
 
 	boolean saveDataFromFileUpload(MultipartFile file);
 
+	
+
+	
 }
