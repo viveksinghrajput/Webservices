@@ -5,15 +5,14 @@
 <title>File Upload</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
 </head>
 <body>
 
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-			<h2 class="bg-info text-white">File Upload</h2>
-				
+				<h2 class="bg-info text-white">File Upload</h2>
+
 				<div class="alert alert-success alert-dismissible" role="alert"
 					th:if="${successmessage}">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -33,26 +32,38 @@
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form> -->
-				
-				<form th:action="@{/import}" method="post" enctype="multipart/form-data">
-				<label for="fileupload" >File Upload(Excel or CSV or JSON)</label>
+
+				<form th:action="@{/import}" method="post"
+					enctype="multipart/form-data">
+					<label for="fileupload">File Upload(Excel or CSV or JSON)</label>
 					<div class="form-group">
-					 <input type="file" th:name="file">
-					  <input th:type="submit" value="Import" class="btn btn-primary"/>
+						<input type="file" th:name="file"> <input th:type="submit"
+							value="Import" class="btn btn-primary" /> <a
+							th:href="@{/downloadExcel}" style="float: right"> <img
+							src="/images/excel.png" alt="Download" width="40" height="50">
+						</a> <a th:href="@{/downloadPdf}" style="float: right"> <img
+							src="/images/pdf.png" alt="Download" width="40" height="50">
+						</a> <a th:href="@{/downloadJson}" style="float: right"> <img
+							src="/images/json.png" alt="Download" width="40" height="50">
+						</a> <a th:href="@{/downloadCsv}" style="float: right"> <img
+							src="/images/csv.png" alt="Download" width="40" height="50">
+						</a>
+
 					</div>
 				</form>
-					
+
+
 			</div>
 			<div class="col-md-12">
 				<h2 class="bg-info text-white">All User</h2>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th  class="bg-secondary text-white">First Name</th>
-							<th  class="bg-secondary text-white">Last Name</th>
-							<th  class="bg-secondary text-white">Email</th>
-							<th  class="bg-secondary text-white">Phone Number</th>
-							<th  class="bg-secondary text-white">File Type</th>
+							<th class="bg-secondary text-white">First Name</th>
+							<th class="bg-secondary text-white">Last Name</th>
+							<th class="bg-secondary text-white">Email</th>
+							<th class="bg-secondary text-white">Phone Number</th>
+							<th class="bg-secondary text-white">File Type</th>
 						</tr>
 					</thead>
 					<tbody>
