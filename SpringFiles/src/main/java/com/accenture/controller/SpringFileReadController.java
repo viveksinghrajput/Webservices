@@ -16,18 +16,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.accenture.model.User;
-import com.accenture.service.SpringFileReadService;
+
+import com.accenture.service.FileReadService;
 
 @Controller
 public class SpringFileReadController {
 
+	/*
+	 * @Autowired private SpringFileReadService springfileReadService;
+	 */
+	
 	@Autowired
-	private SpringFileReadService fileReadService;
+	private FileReadService fileReadService;
 	@Autowired
 	private ServletContext context;
 
@@ -54,6 +58,7 @@ public class SpringFileReadController {
 	@PostMapping("/import")
 	public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes)
 			throws IOException {
+		
 		boolean isFalg = fileReadService.saveDataFromFileUpload(file);
 		if (isFalg) {
 			redirectAttributes.addFlashAttribute("successmessage", "File Upload SuccessFully!");
