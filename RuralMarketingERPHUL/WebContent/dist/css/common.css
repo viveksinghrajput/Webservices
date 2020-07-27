@@ -1,0 +1,65 @@
+@charset "ISO-8859-1";
+
+
+				/* Page	Heading Style  */
+.border-bottom-underline{
+	 
+    font-weight: 200;
+    font-size:150%;
+    border-bottom:1px solid white;
+    color:#483D8;
+}
+.modal-content{
+width:100%
+}
+				/* RRP Heading Style */
+.navbar-default .navbar-brand {
+    color: #483D8B;
+    font-weight: bold;
+}
+.error_message {
+/* 	margin-top: 0;
+	margin-left: 2000;
+	font-size: .70em;
+	margin-bottom: 0; */
+	color: #FF0000;
+	 align:center;
+	 color: #FF0000;
+}
+
+
+/* For pannel-heading */
+.panel-heading{
+padding-top: 7px;
+padding-bottom: 16px;
+height: 46px;
+margin-bottom: -5px;
+padding-right: 4px;
+
+}
+
+/*  */
+
+.panel-body{
+padding-top:0px;
+padding-bottom:25px;
+}
+
+.panel {
+margin-bottom: 0px;
+}
+
+.dataTables_wrapper .dataTables_length {
+float: left;
+}
+.dataTables_wrapper .dataTables_filter {
+float: right;
+text-align: left;
+}
+.modal-content{
+width:100%
+}
+
+.col-xs-offset-5{
+	margin-left:center;
+}

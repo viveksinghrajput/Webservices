@@ -1,0 +1,41 @@
+package com.rural.DAO;
+
+import java.util.List;
+import org.springframework.stereotype.Component;
+import com.rural.Model.AgencyMaster;
+import com.rural.Model.Roles;
+import com.rural.Model.SecurityAnswers;
+import com.rural.Model.SecurityQuestions;
+import com.rural.Model.StateMaster;
+import com.rural.Model.StatusMaster;
+import com.rural.Model.UserMaster;
+import com.rural.Model.VendorMaster;
+
+
+@Component
+public interface LoginDAO {
+
+	public boolean validateLogin(String userName, String userPassword);
+
+	public List<Roles> getRoles();
+	public List<StateMaster> getStateMap();
+	public List<AgencyMaster> getAgencyMap();
+
+	public List<StatusMaster> getStatusMap();
+
+	public List<UserMaster> getNamesList();
+
+	public List<VendorMaster> getVendorMap();
+
+	public List<SecurityQuestions> listQns(Integer userId);
+
+	public void saveAnswers(List<SecurityAnswers> ansList, Integer userId, String username, String strpassword);
+
+	public int validateQuestions(Integer userId, List<SecurityAnswers> ansList);
+
+	public int countAns(String username);
+
+	public String getPassword(int userId);
+
+	public List<String> getMenuListbyRole(int roleId);
+}

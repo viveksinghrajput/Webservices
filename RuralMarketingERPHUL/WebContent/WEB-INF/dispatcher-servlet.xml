@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.rural" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	<mvc:resources mapping="/data/**" location="/data/"/>
+    <mvc:resources mapping="/dist/**" location="/dist/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/less/**" location="/less/"/>
+    <mvc:resources mapping="/vendor/**" location="/vendor/"/>
+	
+	
+<bean
+	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+	<property name="location">
+		<value>database.properties</value>
+	</property>
+</bean>
+     <bean id="dataSource"
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${jdbc.driverClassName}" />
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.username}" />
+            <property name="password" value="${jdbc.password}" />
+      </bean>
+
+      <!-- Configure Hibernate 4 Session Facotry -->
+      <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<property name="dataSource"><ref bean="dataSource" /></property>
+			<property name="hibernateProperties">
+			  <props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<!-- <prop key="hibernate.show_sql">true</prop> -->
+					<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+			  </props>
+			  
+			</property>
+			<property name="annotatedClasses">
+			<list>
+				<value>com.rural.Model.AgencyMaster</value>
+				<value>com.rural.Model.CensusMaster</value>
+				<value>com.rural.Model.ConversionMaster</value>
+				<value>com.rural.Model.H2HCoveredMaster</value>
+				<value>com.rural.Model.Market_Potential</value>
+				<value>com.rural.Model.MenuMaster</value> 
+				<value>com.rural.Model.PrePlanItemList</value>
+				<value>com.rural.Model.PrePlanMaster</value>
+				<value>com.rural.Model.RoleMaster</value>
+				<value>com.rural.Model.RoutePlanMaster</value>
+				<value>com.rural.Model.SalesMaster</value>
+				<value>com.rural.Model.SaturationMaster</value>
+				<value>com.rural.Model.UserHistory</value>
+				<value>com.rural.Model.UserMaster</value>
+				<value>com.rural.Model.VendorMaster</value>
+				<value>com.rural.Model.VendorWareHouseMaster</value>
+				<value>com.rural.Model.WareHouseHistory</value>
+				<value>com.rural.Model.DeliveryAndInventory</value>
+				<value>com.rural.Model.SLAMaster</value>
+				<value>com.rural.Model.StateMaster</value>
+				<value>com.rural.Model.CityMaster</value>
+				<value>com.rural.Model.Photo</value>
+				<value>com.rural.Model.Stock</value>
+				<value>com.rural.Model.CreateInvoices</value>
+				<value>com.rural.Model.BrandMaster</value>
+				<value>com.rural.Model.DeliveryAndInventoryItems</value>
+				<value>com.rural.Model.Roles</value>
+				<value>com.rural.Model.ItemDescriptionMaster</value>
+				<value>com.rural.Model.StatusMaster</value>
+				<value>com.rural.Model.FinanceMaster</value>
+				<value>com.rural.Model.FinanceHistory</value>
+				<value>com.rural.Model.DOMaster</value>
+				<value>com.rural.Model.DOMasterTemp</value>
+				<value>com.rural.Model.FinanceDOMapping</value>
+				<value>com.rural.Model.SecurityQuestions</value>
+				<value>com.rural.Model.SecurityAnswers</value>
+			</list>
+			</property>
+			
+			
+
+      </bean>
+      
+      <!-- Configuring interceptors based on URI -->
+ <mvc:interceptors>
+  <mvc:interceptor>
+  <mvc:mapping path="/*" /> 
+  <bean class="com.rural.Interceptor.RequestHandlerInterceptor"/> 
+ </mvc:interceptor> 
+</mvc:interceptors>  
+      
+      <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+</bean>
+	
+</beans>
+ 
